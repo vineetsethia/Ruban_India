@@ -39,14 +39,14 @@ body{    background:url(../img/background.jpg) no-repeat;
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">Indigo</span>
+          <span class="mdl-layout-title">Ruban</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a class="mdl-navigation__link" href="user.php">Home</a>
             <a class="mdl-navigation__link" href="post.php">Post</a>
-			<a class="mdl-navigation__link" href="profile.php">Login As:<?php echo " ".$_SESSION["blogger_username"]?></a>
+			<a class="mdl-navigation__link" href="profile.php">Login As:<?php echo " ".$_SESSION["username"]?></a>
 			<a class="mdl-navigation__link" href="../html/contact.html">Contact Us</a>
 				<a class="mdl-navigation__link" href="control.php">Control Panel</a>
 					<a class="mdl-navigation__link" href="Request.php">Requests</a>

@@ -117,7 +117,7 @@ html{    background:url(../img/background.jpg) no-repeat;
              <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a class="mdl-navigation__link" href="user.php">Home</a>
             <a class="mdl-navigation__link" href="post.php">Post</a>
-			<a class="mdl-navigation__link" href="profile.php">Login As:<?php echo " ".$_SESSION["blogger_username"]?></a>
+			<a class="mdl-navigation__link" href="profile.php">Login As:<?php echo " ".$_SESSION["username"]?></a>
 			<a class="mdl-navigation__link" href="../html/contact.html">Contact Us</a>
 			<a class="mdl-navigation__link" href="logout.php">Log Out</a>
 			
@@ -130,7 +130,7 @@ html{    background:url(../img/background.jpg) no-repeat;
         <div class="page-content">
 		<div class="form-style-8">
 		
-  <h2><center>EDIT POST</center></h2>
+  <h2><center>Edit Product Details</center></h2>
   <?php
   $servername = "localhost";
 $username = "root";
@@ -144,19 +144,26 @@ if (!$conn) {
 	
 }
 $p5=$_POST['id'];
-$re="SELECT * FROM blog_master WHERE $p5=blog_master.blog_id";
+$re="SELECT * FROM product_details WHERE $p5=product_details.product_id";
 		
 		
 		$rs = mysqli_query($conn,$re);
 		$row=mysqli_fetch_array($rs);
-		$p1=$row['blog_title'];
-	$p2=$row['blog_category'];
-	$p3=$row['blog_desc'];
+		$p=$row['product_image'];
+	$p1=$row['product_title'];
+	$p2=$row['product_category'];
+	$p3=$row['price'];
+	$p4=$row['creation_date'];
+	$p5=$row['product_desc'];
+	$p6=$row['product_id'];
   echo "<form action=\"Edit Post1.php\" enctype=\"multipart/form-data\" method=\"post\"  >
   <h4>Title</h4><input type=\"text\" name=\"title\" value=\"$p1\"/>
-	<h4>Genre</h4><input type=\"text\" name=\"type\"  value=\"$p2\" />
-	<h4>Description</h4>	<input type=\"text\" name=\"desc\"  value=\"$p3\" />
-    <input type=\"hidden\" name=\"id\" value=\"$p5\">
+	<h4>Category</h4><input type=\"text\" name=\"type\"  value=\"$p2\" />
+	<h4>Price</h4> <input type=\"text\" name=\"price\"  value=\"$p3\" />
+	<h4>Creation Date</h4> <input type=\"text\" name=\"cdate\"  value=\"$p4\" />
+	<h4>Product Description</h4> <input type=\"text\" name=\"desc\"  value=\"$p5\" />
+	<h4>Product Image</h4> <input type=\"file\" name=\"img\"  value=\"$p\" />
+    <input type=\"hidden\" name=\"id\" value=\"$p6\">
 	<center><input type=\"submit\" value=\"Submit\" /></center>
   </form>"
   ?>
