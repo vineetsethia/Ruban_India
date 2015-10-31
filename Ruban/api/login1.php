@@ -18,9 +18,9 @@ $password = stripslashes($password);
 $username = mysql_real_escape_string($username);
 $password = mysql_real_escape_string($password);
 // Selecting Database
-$db = mysql_select_db("blogweb", $connection);
+$db = mysql_select_db("ruban", $connection);
 // SQL query to fetch information of registerd users and finds user match.
-$query = mysql_query("select * from blogger_info where blogger_password='$password' AND blogger_username='$username'", $connection);
+$query = mysql_query("select * from user_info where password='$password' AND  username='$username'", $connection);
 $rows1 = mysql_num_rows($query);
 if ($rows1 == 1) {
 

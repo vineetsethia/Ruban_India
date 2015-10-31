@@ -45,7 +45,7 @@ body{    background:url(../img/background.jpg) no-repeat;
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">Indigo</span>
+          <span class="mdl-layout-title">Ruban</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
@@ -68,7 +68,7 @@ body{    background:url(../img/background.jpg) no-repeat;
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "blogweb";
+$dbname = "ruban";
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
@@ -77,7 +77,7 @@ if (!$conn) {
 	
 }
 $d=$_SESSION["blogger_username"];
-$spd="select about,profile_pic from blogger_info where blogger_username='$d'";
+$spd="select about,profile_pic from user_info where username='$d'";
 	$spd2 = mysqli_query($conn,$spd);
 	$row=mysqli_fetch_array($spd2);
     $des=$row['about'];

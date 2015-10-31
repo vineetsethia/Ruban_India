@@ -32,20 +32,20 @@ html{    background:url(../img/background.jpg) no-repeat;
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">Indigo</span>
+          <span class="mdl-layout-title">Ruban</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a class="mdl-navigation__link" href="user.php">Home</a>
             <a class="mdl-navigation__link" href="post.php">Post</a>
-			<a class="mdl-navigation__link" href="profile.php">Login As:<?php echo " ".$_SESSION["blogger_username"]?></a>
+			<a class="mdl-navigation__link" href="profile.php">Login As:<?php echo " ".$_SESSION["username"]?></a>
 			<a class="mdl-navigation__link" href="../html/contact.html">Contact Us</a>
 			<?php
-           if($_SESSION["blogger_username"]=='admin')
+           if($_SESSION["username"]=='admin')
             echo "<a class=\"mdl-navigation__link\" href=\"control.php\">Control Panel</a>";		   
 			?>
-			<?php if($_SESSION["blogger_username"]=='admin')
+			<?php if($_SESSION["username"]=='admin')
             echo "<a class=\"mdl-navigation__link\" href=\"Request.php\">Requests</a>";		   
 			?>
 			<a class="mdl-navigation__link" href="logout.php">Log Out</a>
@@ -62,7 +62,7 @@ html{    background:url(../img/background.jpg) no-repeat;
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "blogweb";
+$dbname = "ruban";
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
@@ -70,37 +70,45 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$re="SELECT blog_master.blog_id,blog_title,blog_desc,blog_auther,blog_category,blog_detail_image,creation_date FROM blog_master,blog_details WHERE blog_master.blog_id=blog_details.blog_id  ORDER BY blog_master.blog_id DESC LIMIT 5";
+$re="SELECT product_title,product_desc,product_category,price,creation_date,product_image from product_details ORDER BY product_id DESC";
 		
 		
 		$rs = mysqli_query($conn,$re);
 while ($row=mysqli_fetch_array($rs))
 	{
 	
-	$p=$row['blog_detail_image'];
-	$p1=$row['blog_auther'];
-	$p2=$row['creation_date'];
-	$p3=$row['blog_title'];
-$p4=$row['blog_desc'];
+	$p=$row['product_image'];
+	$p1=$row['product_title'];
+	$p2=$row['product_category'];
+	$p3=$row['price'];
+	$p4=$row['creation_date'];
+	$p5=$row['product_desc'];
+	 
 	echo "</table  align=\"center\">";
 	echo "</br>";
 	echo" <table class=\"mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp\"  align=\"center\">";
      echo "<thead>";
       echo"  <tr>";
         
-         echo "<th><img src=\"$p\"  height=\"442\" width=\"642\"></th>";
+         echo "<th><img src=\"$p\"  height=\"100\" width=\"200\"></th>";
         
       echo"  </tr>";
      echo" </thead>";
     echo"  <tbody>";
        echo"<tr>";
-       echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Title: $p3</td >";
+       echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Title: $p1</td >";
         
        echo" <tr>";
-        echo"  <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">Description: $p4</td>";
+        echo"  <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">Category: $p2</td>";
+       echo" </tr>";
+	   echo" <tr>";
+        echo"  <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">Price: $p3</td>";
+       echo" </tr>";
+	   echo" <tr>";
+        echo"  <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">Created date: $p4</td>";
        echo" </tr>";
        echo" <tr>";
-        echo"    <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">By: <a href=\"profile.php\">$p1</a></td>";
+        echo"  <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">By: <a href=\"profile.php\">$p5</a></td>";
           
        echo" </tr>";
       echo"</tbody>";

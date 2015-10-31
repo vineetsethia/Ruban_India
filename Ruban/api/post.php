@@ -98,14 +98,14 @@ html{    background:url(../img/background.jpg) no-repeat;
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">Indigo</span>
+          <span class="mdl-layout-title">Rubal</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
              <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a class="mdl-navigation__link" href="user.php">Home</a>
             <a class="mdl-navigation__link" href="post.php">Post</a>
-			<a class="mdl-navigation__link" href="profile.php">Login As:<?php echo " ".$_SESSION["blogger_username"]?></a>
+			<a class="mdl-navigation__link" href="profile.php">Login As:<?php echo " ".$_SESSION["username"]?></a>
 			<a class="mdl-navigation__link" href="../html/contact.html">Contact Us</a>
 			<a class="mdl-navigation__link" href="logout.php">Log Out</a>
 			
@@ -120,7 +120,9 @@ html{    background:url(../img/background.jpg) no-repeat;
   <h2>CREATE A BLOG!!!</h2>
   <form action="../api/post1.php" enctype="multipart/form-data" method="post"  >
     <input type="text" name="title" placeholder="TITLE" />
-	<input type="text" name="type" placeholder="BLOG GENERE" />
+	<input type="text" name="type" placeholder="Category" />
+		<input type="text" name="price" placeholder="Price" />
+		<input type="text" name="cdate" placeholder="Creation Date" />
      <textarea placeholder="DESCRIPTION" onkeyup="adjust_textarea(this)" name="desc"></textarea>
 	 <input type="file" name="img">
     <input type="submit" value="POST BLOG" />
