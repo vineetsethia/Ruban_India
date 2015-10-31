@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Ruben2</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_voice_to_text">Voice_to_text</string>
+    <string name="title_activity_status">Status</string>
+</resources>
