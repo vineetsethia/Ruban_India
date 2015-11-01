@@ -6,17 +6,24 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 
 public class Dashboard extends AppCompatActivity {
 
     private NavigationView navigationView;
     DrawerLayout mDrawerLayout;
+    FragmentManager mFragmentManager;
+    FragmentTransaction mFragmentTransaction;
+
 
 
     @Override
@@ -28,6 +35,14 @@ public class Dashboard extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.nav);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
 
+        Bundle bundle=new Bundle();
+        final WhatFragment w = new WhatFragment();
+
+        mFragmentManager = getSupportFragmentManager();
+        mFragmentTransaction = mFragmentManager.beginTransaction();
+        w.setArguments(bundle);
+        mFragmentTransaction.replace(R.id.containerView,w).commit();
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
             // This method will trigger on item Click of navigation menu
@@ -37,13 +52,14 @@ public class Dashboard extends AppCompatActivity {
                 //Closing drawer on item click
                 mDrawerLayout.closeDrawers();
 
-                //Checking if the item is in checked state or not, if not make it in checked state
-                if(menuItem.isChecked()) menuItem.setChecked(false);
-                else menuItem.setChecked(true);
 
 
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()){
+
+                    case R.id.welcome:
+                        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.containerView,new WhatFragment()).commit();
 
                     case R.id.voice_To_text:
 
@@ -51,10 +67,12 @@ public class Dashboard extends AppCompatActivity {
                         startActivity(i);
                         return true;
                     case R.id.e_cart:
-                        Toast.makeText(getApplicationContext(),"E-cart Selected",Toast.LENGTH_SHORT).show();
+                        Intent e = new Intent(Dashboard.this,Ecart.class);
+                        startActivity(e);
                         return true;
                     case R.id.logout:
-                        Toast.makeText(getApplicationContext(),"Logout Selected",Toast.LENGTH_SHORT).show();
+                        Intent j = new Intent(Dashboard.this,Login.class);
+                        startActivity(j);
                         return true;
                      default:
                         Toast.makeText(getApplicationContext(),"Somethings Wrong",Toast.LENGTH_SHORT).show();

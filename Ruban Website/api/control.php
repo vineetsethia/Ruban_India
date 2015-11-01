@@ -45,6 +45,7 @@ body{    background:url(../img/background.jpg) no-repeat;
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a class="mdl-navigation__link" href="user.php">Home</a>
+			<a class="mdl-navigation__link" href="crowdsorcing.php">Crowd Sourcing Solutions</a>
             <a class="mdl-navigation__link" href="post.php">Post</a>
 			<a class="mdl-navigation__link" href="profile.php">Login As:<?php echo " ".$_SESSION["username"]?></a>
 			<a class="mdl-navigation__link" href="../html/contact.html">Contact Us</a>

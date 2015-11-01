@@ -3,10 +3,18 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:id="@+id/welcome"
+            android:checked="true"
+            android:icon="@drawable/ic_action_home"
+            android:title="Welcome"
+            />
+
+        <item
             android:id="@+id/voice_To_text"
-            android:checked="false"
-            android:icon="@drawable/ic_action_key"
-            android:title="Voice to text" />
+            android:checked="true"
+            android:icon="@drawable/ic_action_pin"
+            android:title="Query"
+            />
 
         <item
             android:id="@+id/e_cart"
@@ -16,6 +24,7 @@
         <item
             android:id="@+id/logout"
             android:checked="false"
+            android:icon="@drawable/ic_action_send"
             android:title="Logout" />
 
     </group>

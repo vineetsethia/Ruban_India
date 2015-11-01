@@ -66,8 +66,8 @@ function googleTranslateElementInit() {
           </nav>
         </div>
       </header>
-      
-      <main class="mdl-layout__content">
+	  
+	    <main class="mdl-layout__content">
         <div class="page-content">
 		
 		<?php 
@@ -82,61 +82,42 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$re="SELECT product_title,product_desc,product_category,price,creation_date,product_image,product_id from product_details ORDER BY product_id DESC";
-		
-		
+$re="SELECT * from product_details";
 		$rs = mysqli_query($conn,$re);
-while ($row=mysqli_fetch_array($rs))
-	{
-	
+		$row=mysqli_fetch_array($rs);
+		
+$re1="SELECT * from user_info where user_info.user_id=product_details.user_id";
+	$rs1=mysqli_query($conn,$re1);
+	$row1=mysqli_fetch_array($rs1);
+	//echo $re1;
+
 	$p=$row['product_image'];
 	$p1=$row['product_title'];
 	$p2=$row['product_category'];
 	$p3=$row['price'];
 	$p4=$row['creation_date'];
 	$p5=$row['product_desc'];
-	$p6=$row['product_id']; 
+	$p6=$row['product_id'];
+	$p7=$row1['username'];
+	$p8=$row1['email'];
+	echo $p1;
+	echo $p2;
+	echo $p3;echo $p4;
+	echo $p5;
+	echo $p6;
+	echo $p7;
+	echo $p8;
 	echo "</table  align=\"center\">";
 	echo "</br>";
 	echo" <table class=\"mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp\"  align=\"center\">";
      echo "<thead>";
       echo"  <tr>";
-        
-         echo "<th><img src=\"$p\"  height=\"100\" width=\"200\"></th>";
-        
-      echo"  </tr>";
-     echo" </thead>";
-    echo"  <tbody>";
-       echo"<tr>";
-       echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Title: $p1</td >";
-        
-       echo" <tr>";
-        echo"  <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">Category: $p2</td>";
-       echo" </tr>";
-	   echo" <tr>";
-        echo"  <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">Price: $p3</td>";
-       echo" </tr>";
-	   echo" <tr>";
-        echo"  <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">Created date: $p4</td>";
-       echo" </tr>";
-       echo" <tr>";
-        echo"  <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">By: <a href=\"profile.php\">$p5</a></td>";
-		
-		echo" <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">
-		<form action=\"order.php\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\"$p6\"><input type=\"submit\" class=\"btn btn-info\" value=\"Order\"></td>";
-          
-       echo" </tr>";
-      echo"</tbody>";
-  echo" </table>";
-}
-
-		
-		?>
-
-		
-		
-		</div>
-      </main>
-    </div>
-  </body>
-</html>
+	  echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Seller Name: </td><td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">$p7</td >";
+	  echo"  </tr><tr>";
+	  echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Seller Email: </td><td class=\"mdl-data-table__cell--non-numeric\" align=\"center\"$p8</td >";
+	  echo"  <tr></tr>";
+	  echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Product Name: </td> <td><class=\"mdl-data-table__cell--non-numeric\" align=\"center\"$p1</td >";
+	  echo"  <tr></tr>";
+	  echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Product Price: </td> <td><class=\"mdl-data-table__cell--non-numeric\" align=\"center\"$p3</td >";
+	  ?>
+	 </html> 

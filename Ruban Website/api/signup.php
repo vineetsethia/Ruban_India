@@ -16,7 +16,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO user_info(email, blogger_username, blogger_password) VALUES ('$email','$username1','$password1')";
+$sql = "INSERT INTO user_info(email, username, password) VALUES ('$email','$username1','$password1')";
 
 if (mysqli_query($conn, $sql)) {
     header('Location: ../html/login1.html');    

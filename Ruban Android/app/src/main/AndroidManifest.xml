@@ -5,7 +5,13 @@
     <uses-permission android:name="android.permission.INTERNET" >
     </uses-permission>
 
+    <!-- Accessing camera hardware -->
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".App.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -39,6 +45,11 @@
         <activity
             android:name=".Status"
             android:label="@string/title_activity_status"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".Ecart"
+            android:label="@string/title_activity_ecart"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>

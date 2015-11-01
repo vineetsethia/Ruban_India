@@ -27,13 +27,10 @@ if ($rows1 == 1) {
 $row = mysql_fetch_array($query); 
 
 
-$_SESSION["blogger_username"]=$row["blogger_username"];
-$_SESSION["blogger_id"]=$row["blogger_id"];
-$p=$row['blogger_is_active'];
-if($p=='yes')
+$_SESSION["username"]=$row["username"];
+$_SESSION["user_id"]=$row["user_id"];
 header("location: user.php"); // Redirecting To Other Page
-else 
-header("location: ../html/loginf.html");
+
 }
 else
 	header("location: ../html/loginf.html");

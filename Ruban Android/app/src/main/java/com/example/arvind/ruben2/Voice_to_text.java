@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +35,9 @@ public class Voice_to_text extends AppCompatActivity {
     protected static final int RESULT_SPEECH = 1;
 
     private ImageButton btnSpeak;
+    private Button btnStore;
     private TextView txtText;
+    private String string="";
     private static final String TAG = Voice_to_text.class.getSimpleName();
 
 
@@ -49,7 +52,25 @@ public class Voice_to_text extends AppCompatActivity {
 
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
 
-        btnSpeak.setOnClickListener(new View.OnClickListener() {
+        btnStore = (Button) findViewById(R.id.btnStore);
+
+        btnStore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                string = (String)txtText.getText().toString();
+                Toast t = Toast.makeText(getApplicationContext(),
+                        string,
+                        Toast.LENGTH_SHORT);
+                t.show();
+
+                store(string);
+
+            }
+        });
+
+
+            btnSpeak.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -62,7 +83,6 @@ public class Voice_to_text extends AppCompatActivity {
                 try {
                     startActivityForResult(intent, RESULT_SPEECH);
                     txtText.setText("");
-                    store((String) txtText.getText());
                 } catch (ActivityNotFoundException a) {
                     Toast t = Toast.makeText(getApplicationContext(),
                             "Opps! Your device doesn't support Speech to Text",
@@ -86,6 +106,8 @@ public class Voice_to_text extends AppCompatActivity {
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
                     txtText.setText(text.get(0));
+
+
                 }
                 break;
             }
@@ -94,14 +116,13 @@ public class Voice_to_text extends AppCompatActivity {
     }
 
     //login fails
-    public void onStoreFailed(String msg ) {
+    public void onStoreFailed(final String msg ) {
         Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
     }
     public void store(final String msg) {
-        String tag_string_req = "req_Store";
+        String tag_string_req = "req_login";
         final ProgressDialog progressDialog = new ProgressDialog(Voice_to_text.this, R.style.AppTheme);
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_Voice, new Response.Listener<String>() {
-
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "Store Response: " + response.toString());
@@ -110,10 +131,8 @@ public class Voice_to_text extends AppCompatActivity {
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
-
                     // Check for error node in json
                     if (!error) {
-
                         // Launch main activity
                         Intent intent = new Intent(Voice_to_text.this, Status.class);
                         startActivity(intent);
@@ -144,7 +163,7 @@ public class Voice_to_text extends AppCompatActivity {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("tag", "login");
-                params.put("query", msg);
+                params.put("msg",msg);
                 return params;
             }
 
@@ -157,3 +176,5 @@ public class Voice_to_text extends AppCompatActivity {
 
 
 }
+
+

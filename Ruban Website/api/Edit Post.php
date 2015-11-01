@@ -110,12 +110,20 @@ html{    background:url(../img/background.jpg) no-repeat;
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">Ruban</span>
+           <span class="mdl-layout-title">Ruban&nbsp;&nbsp;&nbsp;</span>
+		  
+		  
+		  <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
              <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a class="mdl-navigation__link" href="user.php">Home</a>
+						<a class="mdl-navigation__link" href="crowdsorcing.php">Crowd Sourcing Solutions</a>
             <a class="mdl-navigation__link" href="post.php">Post</a>
 			<a class="mdl-navigation__link" href="profile.php">Login As:<?php echo " ".$_SESSION["username"]?></a>
 			<a class="mdl-navigation__link" href="../html/contact.html">Contact Us</a>

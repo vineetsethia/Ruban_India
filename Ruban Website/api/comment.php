@@ -13,8 +13,11 @@ $result=mysql_query($sql);
 $row=mysql_fetch_array($result);
 $user_id=$row['user_id'];
 $sql2="insert into suggestion values($sms_id,$user_id,'$username','$suggestion',NULL)";
+echo $sql2;
 $result2=mysql_query($sql2);
-if(mysql_fetch_array($result2)){
-	header('Location: crowdsorcing.php');
+if($result2 === FALSE) { 
+    die(mysql_error()); // TODO: better error handling
 }
+mysql_fetch_array($result2);
+	header('Location: crowdsorcing.php');
 ?>

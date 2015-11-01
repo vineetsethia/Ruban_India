@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
   <head>
     <!-- Material Design Lite -->
@@ -21,7 +24,7 @@
 	<style>
 	@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 
-html{    background:url(../img/background.jpg) no-repeat;
+body{    background:url(../img/back.jpg) no-repeat;
   background-size: cover;
   height:100%;
 }
@@ -33,12 +36,20 @@ html{    background:url(../img/background.jpg) no-repeat;
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">Ruban</span>
+          <span class="mdl-layout-title">Ruban&nbsp;&nbsp;&nbsp;</span>
+		  
+		  
+		  <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a class="mdl-navigation__link" href="home.php">Home</a>
+						<a class="mdl-navigation__link" href="crowdsorcing.php">Crowd Sourcing Solutions</a>
             <a class="mdl-navigation__link" href="../html/login.html">Login</a>
 			  <a class="mdl-navigation__link" href="../html/contact.html">Contact us</a>
            
@@ -65,7 +76,9 @@ while ($row=mysql_fetch_array($rs))
 	$p=$row['sms_id'];
 	$p1=$row['from_no'];
 	$p2=$row['to_no'];
-	$p3=$row['date'];
+	//$p3=$row['date'];
+	$date=getdate();
+$p3=$date['mday']."/".$date['mon']."/".$date['year'];
 	$p4=$row['body'];
 	 
 	echo "</table  align=\"center\">";
@@ -73,7 +86,7 @@ while ($row=mysql_fetch_array($rs))
 	echo" <table class=\"mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp\"  align=\"center\">";
        echo"  <tbody>";
        echo"<tr>";
-       echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Title: $p4</td >";
+       echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\"><b>Query</b>: $p4</td >";
         
        echo" <tr>";
         echo"  <td class=\"mdl-data-table__cell--non-numeric\"  align=\"center\">Posted Date: $p3</td>";
@@ -86,18 +99,21 @@ while ($row=mysql_fetch_array($rs))
 	  <input type=\"hidden\" name=\"id\" value=\"$p\">
 	  <input type=\"submit\" class=\"btn btn-info\" value=\"Suggest\">
 </form></td></tr>";
-      $sql2= "select * from suggestion where suggestion.sms_id=query.sms_id";
+      $sql2= "select * from suggestion,query where suggestion.sms_id=query.sms_id";
      $rs2= mysql_query($sql2);
+	if($rs2 === FALSE) { 
+    die(mysql_error()); // TODO: better error handling
+}
 		while ($row2=mysql_fetch_array($rs2))
 	   {
          $r=$row2['username'];
         $r1=$row2['suggestion'];
-		echo "</table  align=\"center\">";
-	echo "</br>";
-	echo" <table class=\"mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp\"  align=\"center\">";
-       echo"  <tbody>";
+	//	echo "</table  align=\"center\">";
+	//echo "</br>";
+	//echo" <table class=\"mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp\"  align=\"center\">";
+     //  echo"  <tbody>";
        echo"<tr>";
-       echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">$r <p>: $r1</p> </td >";
+       echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\"><b><u>$r</u></b> : $r1 </td >";
         
        echo" </tr>";
 		

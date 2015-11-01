@@ -8,4 +8,6 @@ public class AppConfig {
     // Server user login url
     public static String URL_Voice = "http://www.arvindkiyer.com/ruban/index.php";
 
+    public static String UPLOAD_URL ="http://arvindkiyer.com/ruban/upload.php";
+
 }
