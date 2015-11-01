@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2015 at 06:13 PM
+-- Generation Time: Nov 01, 2015 at 04:11 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -90,6 +90,42 @@ CREATE TABLE IF NOT EXISTS `purchase` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `query`
+--
+
+CREATE TABLE IF NOT EXISTS `query` (
+  `sms_id` int(11) NOT NULL,
+  `from_no` int(11) NOT NULL,
+  `to_no` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `body` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=1235 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `query`
+--
+
+INSERT INTO `query` (`sms_id`, `from_no`, `to_no`, `date`, `body`) VALUES
+(1, 4567, 7890, '0000-00-00 00:00:00', 'Hello'),
+(1234, 4567, 7890, '0000-00-00 00:00:00', 'Hello');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suggestion`
+--
+
+CREATE TABLE IF NOT EXISTS `suggestion` (
+  `sms_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `username` varchar(300) NOT NULL,
+  `suggestion` text NOT NULL,
+  `suggestion_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_info`
 --
 
@@ -133,6 +169,19 @@ ALTER TABLE `purchase`
   ADD PRIMARY KEY (`order_id`);
 
 --
+-- Indexes for table `query`
+--
+ALTER TABLE `query`
+  ADD PRIMARY KEY (`sms_id`);
+
+--
+-- Indexes for table `suggestion`
+--
+ALTER TABLE `suggestion`
+  ADD PRIMARY KEY (`suggestion_id`),
+  ADD KEY `sms_id` (`sms_id`);
+
+--
 -- Indexes for table `user_info`
 --
 ALTER TABLE `user_info`
@@ -153,6 +202,16 @@ ALTER TABLE `product_details`
 ALTER TABLE `purchase`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `query`
+--
+ALTER TABLE `query`
+  MODIFY `sms_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1235;
+--
+-- AUTO_INCREMENT for table `suggestion`
+--
+ALTER TABLE `suggestion`
+  MODIFY `suggestion_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
@@ -166,6 +225,12 @@ ALTER TABLE `user_info`
 --
 ALTER TABLE `product_details`
   ADD CONSTRAINT `product_details_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`user_id`);
+
+--
+-- Constraints for table `suggestion`
+--
+ALTER TABLE `suggestion`
+  ADD CONSTRAINT `suggestion_ibfk_1` FOREIGN KEY (`sms_id`) REFERENCES `query` (`sms_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
