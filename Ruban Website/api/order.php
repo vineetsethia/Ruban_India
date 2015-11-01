@@ -86,12 +86,13 @@ $re="SELECT * from product_details";
 		$rs = mysqli_query($conn,$re);
 		$row=mysqli_fetch_array($rs);
 		
-$re1="SELECT * from user_info where user_info.user_id=product_details.user_id";
+	
+		
+$re1="SELECT * from user_info,product_details where user_info.user_id=product_details.user_id";
 	$rs1=mysqli_query($conn,$re1);
 	$row1=mysqli_fetch_array($rs1);
-	//echo $re1;
-
-	$p=$row['product_image'];
+	
+$p=$row['product_image'];
 	$p1=$row['product_title'];
 	$p2=$row['product_category'];
 	$p3=$row['price'];
@@ -100,13 +101,7 @@ $re1="SELECT * from user_info where user_info.user_id=product_details.user_id";
 	$p6=$row['product_id'];
 	$p7=$row1['username'];
 	$p8=$row1['email'];
-	echo $p1;
-	echo $p2;
-	echo $p3;echo $p4;
-	echo $p5;
-	echo $p6;
-	echo $p7;
-	echo $p8;
+	
 	echo "</table  align=\"center\">";
 	echo "</br>";
 	echo" <table class=\"mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp\"  align=\"center\">";
@@ -114,10 +109,10 @@ $re1="SELECT * from user_info where user_info.user_id=product_details.user_id";
       echo"  <tr>";
 	  echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Seller Name: </td><td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">$p7</td >";
 	  echo"  </tr><tr>";
-	  echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Seller Email: </td><td class=\"mdl-data-table__cell--non-numeric\" align=\"center\"$p8</td >";
+	  echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Seller Email: </td><td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">$p8</td >";
 	  echo"  <tr></tr>";
-	  echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Product Name: </td> <td><class=\"mdl-data-table__cell--non-numeric\" align=\"center\"$p1</td >";
+	  echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Product Name: </td> <td><class=\"mdl-data-table__cell--non-numeric\" align=\"center\">$p1</td >";
 	  echo"  <tr></tr>";
-	  echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Product Price: </td> <td><class=\"mdl-data-table__cell--non-numeric\" align=\"center\"$p3</td >";
+	  echo"<td class=\"mdl-data-table__cell--non-numeric\" align=\"center\">Product Price: </td> <td><class=\"mdl-data-table__cell--non-numeric\" align=\"center\">$p3</td >";
 	  ?>
 	 </html> 
